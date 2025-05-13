@@ -25,15 +25,12 @@ class ProductService {
       throw Exception('Error al obtener productos: ${resp.statusCode}');
     }
 
-    // Decodificamos el JSON
     final decoded = jsonDecode(resp.body);
     late List<dynamic> listData;
 
     if (decoded is List) {
-      // Si ya es un array en la raíz
       listData = decoded;
     } else if (decoded is Map<String, dynamic>) {
-      // Si viene envuelto en un objeto, probamos varias claves:
       if (decoded['Products Listado'] is List) {
         listData = decoded['Products Listado'];
       } else if (decoded['Productos Listado'] is List) {
@@ -41,7 +38,6 @@ class ProductService {
       } else if (decoded.containsKey('data') && decoded['data'] is List) {
         listData = decoded['data'];
       } else {
-        // Si ninguno de los campos coincide, buscamos el primer valor que sea lista
         final candidate = decoded.values.firstWhere(
           (v) => v is List,
           orElse:
@@ -56,7 +52,6 @@ class ProductService {
       throw Exception('JSON de respuesta inválido');
     }
 
-    // Finalmente lo convertimos a ProductModel
     return listData
         .map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
         .toList();

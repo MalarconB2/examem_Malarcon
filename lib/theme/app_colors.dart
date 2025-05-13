@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// Define la paleta de colores de la aplicación según la paleta proporcionada
 class AppColors {
   static const Color shade900 = Color(0xFF005187); // #005187
   static const Color shade700 = Color(0xFF4D82BC); // #4d82bc

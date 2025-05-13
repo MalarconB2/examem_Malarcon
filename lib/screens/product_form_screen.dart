@@ -1,5 +1,3 @@
-// lib/screens/product_form_screen.dart
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/product_model.dart';

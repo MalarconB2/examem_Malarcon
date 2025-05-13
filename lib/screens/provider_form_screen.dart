@@ -22,7 +22,7 @@ class _ProviderFormScreenState extends State<ProviderFormScreen> {
   @override
   void initState() {
     super.initState();
-    // Si viene provider, cargamos sus datos; si no, iniciamos vacíos
+
     _nameCtrl = TextEditingController(
       text: widget.provider?.providerName ?? '',
     );
@@ -52,7 +52,7 @@ class _ProviderFormScreenState extends State<ProviderFormScreen> {
       if (widget.provider == null) {
         // Crear
         final newProv = ProviderModel(
-          providerId: 0, // no usado en add
+          providerId: 0,
           providerName: _nameCtrl.text.trim(),
           providerLastName: _lastNameCtrl.text.trim(),
           providerMail: _mailCtrl.text.trim(),
@@ -70,10 +70,7 @@ class _ProviderFormScreenState extends State<ProviderFormScreen> {
         );
         await service.editProvider(edited);
       }
-      Navigator.pop(
-        context,
-        true,
-      ); // regresamos al listado con señal de refresh
+      Navigator.pop(context, true);
     } catch (e) {
       ScaffoldMessenger.of(
         context,
